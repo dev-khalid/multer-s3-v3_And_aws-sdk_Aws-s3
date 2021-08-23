@@ -1,0 +1,80 @@
+Topic 01: 
+  EXPRESS
+    1.app.listen(port,url,callback Function) -> We are creating local server that server is listening on url:port and as soon as the server is launched the callback Function is called. 
+    2.Routing methods
+      .get('url',(err,req,res,next))-> accepts a get request on 'url' 
+      .post()
+      .patch()
+      .delete()
+      .put()
+      .route('url') -> accepts the url only and on that route() we can then chain .get()|.post() etc to handle that request. 
+      *Mounting Router => app.use('route',routerMiddleware) this routerMiddleware is only executed on request from this 'route'. 
+      *userRouter = express.Router() to initialize a routing functionality. 
+      
+    3.Response
+      .send(Text) -> Sends plain text. 
+      .write(Text/html)
+      .status(statusCode) -> statusCode -> 200,400 etc. 
+      .json(object) => sends an object in Response.
+      .header()
+      .redirect(url)  
+
+    4.MiddleWare 
+      It stands between request and Response. 
+      *app.use(middleware_function(err,req,res,next)|routerMiddleware)
+      *router.param('id|parameter',callback_function(req,res,next,val)|handlerFunction) -> param middlware works if a certain paramer is present on a url. (ex: 'url/:id/parameter') And it will get access to that value also. 
+
+    5.express.json() -> used to modifiy incoming data with request . it modifies the data and make it object. So that we can read data on request's body. 
+
+    6.Request 
+      req.params -> parameter object. and here parameter is passed through url.(ex: 'url/:id') object-> {id: 5}
+      req.body -> posted object that is posted via a post request. 
+      req.query -> query object. 
+
+    7.Variable inside url
+      'xyz.com/:id' here id is a variable. and this variable can be accessed using req.params
+
+Topic 02: 
+  JSON
+    1.JSON.parse(json string) -> converts a json String to javascript object 
+    2.JSON.stringify(object) -> converts a js object to json string. 
+Topic 03: 
+  FILE SYSTEM 
+    1.fs.readFile(path_to_file,buffer/encoding,callback function)
+    2.fs.readFileAsync(path of file_to_read)
+    3.fs.writeFile(path_tofile,text/string,callbackFunction(error))
+
+Topic 04: 
+  ENVIRONMENT 
+    1.process -> global object variable. that has access to many important runtime information. 
+    2.process.env -> environment object. 
+Topic 05: 
+  MONGOOSE -> mongoDb driver (odm)
+    1.mongoose.connect(url,object)
+    2.new mongoose.Schema(constructor_object) 
+    3.mongoose.model('Collection_name',SchemaName)
+    4.new ModelName(input_object)-> creates an object then we have to save this 
+    5.await ModelName.save()
+    6.ModelName.create() -> alternative of new ModelName(input_object) -> await ModelName.save()
+    7.ModelName.find() -> It read all the data of a model. 
+    8.ModelName.findById(id) -> find's a document based on id==ObjectId on mongodb.
+    9.ModelName.findOne(filterObject) 
+    10.ModelName.findByIdAndUpdate(id,update_object,{new: true, runValidator: true}) -> new:true is set so that this returns the modified object.runValidator:true so that at the time of update it also valudate data. 
+    **query-> (example----ModelName.find())
+    11.query.sort(fieldNamesSeparatedBySpace) 
+    12.query.select(fieldNamesSeparatedBySpace) -> selects certain fields. 
+    13.query.skip(number_of_document_to_skip)
+    14.query.limit(number_of_document_to_show/fetch)
+    15.ModelName.countDocuments() 
+Topic 06: 
+  STATUS CODE 
+  200 OK 
+  201 CONTENT CREATED 
+  400 BAD REQUEST 
+  401 NOT AUTHENTICATED 
+  404 NOT FOUND 
+  500 INTERNAL SERVER ERROR 
+
+Topic 07: 
+  TECHNIQUE TO USE 
+    1.For better filtering we should filter the object and exclude unexpected fields from request.query object. 

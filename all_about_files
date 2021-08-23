@@ -1,0 +1,39 @@
+ key: function (req, file, cb) {
+   ***ekhane jei file ta pabo seita ekta object . 
+  📂📂 file { 
+    fieldname: 'gallery',
+    originalname: 'Screenshot (3).png',
+    encoding: '7bit',
+    mimetype: 'image/png'
+   }
+      
+      console.log("📂📂",file); 
+      console.log(typeof file); 
+      console.log("🆕🆕",fileName+fileExt); 
+      cb(null, fileName + fileExt); //this name will be stored in s3 bucket
+      // cb(null, Date.now().toString());
+    },
+
+
+    on req --- -
+    file: {
+    fieldname: 'gallery',
+    originalname: 'Screenshot (2).png',
+    encoding: '7bit',
+    mimetype: 'image/png',
+    size: 276015,
+    bucket: 'toolbox-1',
+    key: 'screenshot-(2)iHNOTPi_bc6fr_Kuv-iNC.png',
+    acl: 'private',
+    contentType: 'application/octet-stream',
+    contentDisposition: null,
+    storageClass: 'STANDARD',
+    serverSideEncryption: null,
+    metadata: { fieldName: 'gallery' },
+    location: 'https://toolbox-1.s3.amazonaws.com/screenshot-%282%29iHNOTPi_bc6fr_Kuv-iNC.png',
+    etag: '"49718905727a627bde78859bf9a245b1"',
+    versionId: undefined
+  },
+
+  if it's multiple then 
+  files [file,file,file]
